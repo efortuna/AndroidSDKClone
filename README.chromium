@@ -1,0 +1,29 @@
+Name: Android Tools (SDK/NDK)
+URL: http://developer.android.com/sdk/index.html
+Version: NDK r9d, SDK API level 19
+Security Critical: no
+License: Apache Version 2.0
+
+Description:
+The Android SDK/NDK provide API libraries and developer tools necessary to
+build, test and debug for Android.
+
+Local Modifications:
+- Removed old android platforms in ndk/platforms
+  (anything under android-14)
+- Added gyp files in ndk/
+    android_tools_ndk.gyp
+    crazy_linker.gyp
+- Edited platforms/android-<version>/arch-arm/usr/include/math.h
+  and platforms/android-<version>/arch-arm/usr/include/sys/cdefs.h
+  to work around issues with clang 3.5
+- sdk/extras added gcm library (revision 3)
+- Updated trace-viewer script to r220 under sdk/tools/systrace.
+  Steps to update to the latest version of trace-viewer:
+    git clone https://android.googlesource.com/platform/external/chromium-trace
+    cd chromium-trace
+    ./update.py
+    cp script.js style.css $ANDROID_SDK_ROOT/tools/systrace
+- An alpha version of the r9e NDK toolchain has been added in ndk_experimental.
+
+No other modifications has been made to the public Android SDK/NDK.
